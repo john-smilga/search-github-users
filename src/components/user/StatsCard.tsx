@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StatsCardProps } from '@/types';
-import { Card, CardTitle, CardDescription } from './ui/card';
+import { Card, CardTitle, CardDescription } from '../ui/card';
 
 function StatsCard({ title, count }: StatsCardProps) {
   const [displayCount, setDisplayCount] = useState(0);

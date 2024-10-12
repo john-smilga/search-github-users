@@ -1,5 +1,10 @@
-import { Button } from './ui/button';
-import { Card, CardTitle, CardDescription, CardHeader } from './ui/card';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardHeader,
+} from '@/components/ui/card';
 import { UserCardProps } from '@/types';
 const UserCard = ({ avatarUrl, name, bio, url }: UserCardProps) => {
   return (

@@ -1,3 +1,16 @@
+export type TopUsersResult = {
+  search: {
+    edges: {
+      node: {
+        login: string;
+        repositories: {
+          totalCount: number;
+        };
+      };
+    }[];
+  };
+};
+
 export type LanguageEdge = {
   node: {
     name: string;
@@ -34,6 +47,9 @@ export type User = {
   gists: {
     totalCount: number;
   };
+};
+export type UserData = {
+  user: User;
 };
 
 export type StatsContainerProps = {

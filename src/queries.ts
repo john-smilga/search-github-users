@@ -37,3 +37,20 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_TOP_USERS_WITH_MOST_REPOS = gql`
+  query {
+    search(query: "type:user", type: USER, first: 25) {
+      edges {
+        node {
+          ... on User {
+            login
+            repositories {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+  }
+`;

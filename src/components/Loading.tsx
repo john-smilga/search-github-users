@@ -1,0 +1,27 @@
+import { Skeleton } from '@/components/ui/skeleton';
+
+export function UserLoading() {
+  return (
+    <div>
+      <Skeleton className='h-[194px] w-full lg:w-1/2 mb-8 rounded ' />
+      <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-2 mb-8'>
+        <Skeleton className=' h-[70px] rounded' />
+        <Skeleton className=' h-[70px] rounded' />
+        <Skeleton className=' h-[70px] rounded' />
+        <Skeleton className=' h-[70px] rounded' />
+      </div>
+    </div>
+  );
+}
+
+export function ListLoading() {
+  const skeletonArray = Array.from({ length: 25 });
+
+  return (
+    <div className='flex gap-2 mb-8 flex-wrap'>
+      {skeletonArray.map((_, index) => (
+        <Skeleton key={index} className='w-[92.72px] h-[32px] rounded ' />
+      ))}
+    </div>
+  );
+}

@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <main className='mx-auto max-w-6xl px-8 py-20'>
-      <SearchForm setUserName={setUserName} />
+      <SearchForm userName={userName} setUserName={setUserName} />
       <UsersList userName={userName} setUserName={setUserName} />
       <UserProfile login={userName} />
     </main>

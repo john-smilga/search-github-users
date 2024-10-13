@@ -2,21 +2,30 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { type FormEvent } from 'react';
+import { useState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 type SearchFormProps = {
   setUserName: React.Dispatch<React.SetStateAction<string>>;
+  userName: string;
 };
 
-export default function SearchForm({ setUserName }: SearchFormProps) {
+export default function SearchForm({ userName, setUserName }: SearchFormProps) {
+  const { toast } = useToast();
+
+  const [text, setText] = useState(userName);
+
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const searchInput = (e.target as HTMLFormElement).elements.namedItem(
-      'search'
-    ) as HTMLInputElement;
-    if (searchInput.value) {
-      setUserName(searchInput.value);
+    if (text === '') {
+      toast({ description: 'Please enter a username' });
+      return;
     }
+    setUserName(text);
   };
+  useEffect(() => {
+    setText(userName);
+  }, [userName]);
   return (
     <form
       onSubmit={handleSearch}
@@ -27,7 +36,9 @@ export default function SearchForm({ setUserName }: SearchFormProps) {
       </Label>
       <Input
         type='text'
-        id='search'
+        id='text'
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         placeholder='Search Github User...'
         className='flex-grow bg-background'
       />

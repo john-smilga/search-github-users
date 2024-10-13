@@ -13,7 +13,7 @@ type UsersListProps = {
 
 const UsersList = ({ userName, setUserName }: UsersListProps) => {
   const [cursor, setCursor] = useState<string | null>(null);
-  const [prevCursor, setPrevCursor] = useState<string | null>(null);
+  const [, setPrevCursor] = useState<string | null>(null);
   const { loading, error, data, fetchMore } = useQuery<UsersResult>(GET_USERS, {
     variables: { after: cursor },
   });

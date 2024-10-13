@@ -1,4 +1,4 @@
-export type TopUsersResult = {
+export type UsersResult = {
   search: {
     edges: {
       node: {
@@ -8,7 +8,27 @@ export type TopUsersResult = {
         };
       };
     }[];
+    pageInfo: {
+      endCursor: string | null;
+      startCursor: string | null;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+    };
   };
+};
+
+export type PaginationButtonsProps = {
+  pageInfo: {
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string | null;
+    endCursor: string | null;
+  };
+  setCursor: React.Dispatch<React.SetStateAction<string | null>>;
+  setPrevCursor: React.Dispatch<React.SetStateAction<string | null>>;
+  fetchMore: (options: {
+    variables: { after?: string | null; before?: string | null };
+  }) => void;
 };
 
 export type LanguageEdge = {

@@ -1,8 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { GET_TOP_USERS_WITH_MOST_REPOS } from '@/queries';
-import { TopUsersResult } from '@/types';
+import { GET_USERS } from '@/queries';
+import { UsersResult } from '@/types';
 import { Button } from './ui/button';
 import { ListLoading } from './Loading';
+import { useState } from 'react';
+import PaginationButtons from './PaginationButtons';
 
 type UsersListProps = {
   userName: string;
@@ -10,31 +12,43 @@ type UsersListProps = {
 };
 
 const UsersList = ({ userName, setUserName }: UsersListProps) => {
-  const { loading, error, data } = useQuery<TopUsersResult>(
-    GET_TOP_USERS_WITH_MOST_REPOS
-  );
+  const [cursor, setCursor] = useState<string | null>(null);
+  const [prevCursor, setPrevCursor] = useState<string | null>(null);
+  const { loading, error, data, fetchMore } = useQuery<UsersResult>(GET_USERS, {
+    variables: { after: cursor },
+  });
 
   if (loading) return <ListLoading />;
   if (error) return <div>{error.message}</div>;
   if (!data) return <div>No data</div>;
 
-  const { edges: users } = data.search;
+  const { edges: users, pageInfo } = data.search;
 
   return (
-    <div className='flex gap-2 mb-8 flex-wrap'>
-      {users.map(({ node }) => {
-        return (
-          <Button
-            size='sm'
-            variant={node.login === userName ? 'secondary' : 'outline'}
-            key={node.login}
-            onClick={() => setUserName(node.login)}
-          >
-            {node.login}
-          </Button>
-        );
-      })}
+    <div>
+      <h2 className='text-lg font-semibold mb-4'>Top Picks</h2>
+      <div className='flex gap-2 mb-8 flex-wrap'>
+        {users.map(({ node }) => {
+          return (
+            <Button
+              size='sm'
+              variant={node.login === userName ? 'secondary' : 'outline'}
+              key={node.login}
+              onClick={() => setUserName(node.login)}
+            >
+              {node.login}
+            </Button>
+          );
+        })}
+      </div>
+      <PaginationButtons
+        pageInfo={pageInfo}
+        setCursor={setCursor}
+        setPrevCursor={setPrevCursor}
+        fetchMore={fetchMore}
+      />
     </div>
   );
 };
+
 export default UsersList;

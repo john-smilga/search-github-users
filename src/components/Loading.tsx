@@ -18,10 +18,17 @@ export function ListLoading() {
   const skeletonArray = Array.from({ length: 25 });
 
   return (
-    <div className='flex gap-2 mb-8 flex-wrap'>
-      {skeletonArray.map((_, index) => (
-        <Skeleton key={index} className='w-[92.72px] h-[32px] rounded ' />
-      ))}
+    <div>
+      <h2 className='text-lg font-semibold mb-4'>Top Picks</h2>
+      <div className='flex gap-2 mb-8 flex-wrap'>
+        {skeletonArray.map((_, index) => (
+          <Skeleton key={index} className='w-[92.72px] h-[32px] rounded ' />
+        ))}
+      </div>
+      <div className='flex gap-2 mb-8'>
+        <Skeleton className='w-[92.72px] h-[36px] rounded ' />
+        <Skeleton className='w-[92.72px] h-[36px] rounded ' />
+      </div>
     </div>
   );
 }

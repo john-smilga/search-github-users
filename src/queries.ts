@@ -38,9 +38,15 @@ export const GET_USER = gql`
   }
 `;
 
-export const GET_TOP_USERS_WITH_MOST_REPOS = gql`
-  query {
-    search(query: "type:user", type: USER, first: 25) {
+export const GET_USERS = gql`
+  query GetTopUsers($after: String, $before: String) {
+    search(
+      query: "type:user"
+      type: USER
+      first: 25
+      after: $after
+      before: $before
+    ) {
       edges {
         node {
           ... on User {
@@ -50,6 +56,12 @@ export const GET_TOP_USERS_WITH_MOST_REPOS = gql`
             }
           }
         }
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
       }
     }
   }

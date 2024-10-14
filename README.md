@@ -41,10 +41,14 @@ This application is built using React and TypeScript, leveraging GraphQL for eff
 
 ## Project Breakdown
 
-### GitHub API Usage
+#### GitHub API Usage
 
 I chose to use the GitHub API because, it returns a wealth of data. This allows for the incorporation of more features in the app and enables the development of a more complex project from both TypeScript and React perspectives.
 
-### State Management
+#### State Management
 
 I did not use any state management solutions, as the app is structured to only require passing props from parent to child components. If the need for more features arises, RTK or Zustand would be my preferred options. Their setup time is comparable to the Context API, but they are significantly more performant and provide a robust API as more features are added.
+
+#### Typescript
+
+I created a corresponding type for each query to catch bugs at build time. This ensures that any discrepancies between the query structure and the expected data types are identified early, improving the reliability and maintainability of the code.

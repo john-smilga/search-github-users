@@ -52,3 +52,11 @@ I did not use any state management solutions, as the app is structured to only r
 #### Typescript
 
 I created a corresponding type for each query to catch bugs at build time. This ensures that any discrepancies between the query structure and the expected data types are identified early, improving the reliability and maintainability of the code.
+
+#### Test
+
+For testing, I used Vitest.
+
+```sh
+npm test
+```

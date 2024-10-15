@@ -7,7 +7,7 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import { calculateMostForkedRepos } from '@/utils';
-const UsedLanguages = ({ repositories }: { repositories: Repository[] }) => {
+const ForkedRepos = ({ repositories }: { repositories: Repository[] }) => {
   const mostForkedRepos = calculateMostForkedRepos(repositories);
   const chartConfig = {
     repo: {
@@ -38,4 +38,4 @@ const UsedLanguages = ({ repositories }: { repositories: Repository[] }) => {
     </div>
   );
 };
-export default UsedLanguages;
+export default ForkedRepos;

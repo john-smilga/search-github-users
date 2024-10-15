@@ -55,7 +55,7 @@ I created a corresponding type for each query to catch bugs at build time. This 
 
 #### Test
 
-For testing, I used Vitest.
+For testing, I used Vitest and React Testing Library
 
 ```sh
 npm test

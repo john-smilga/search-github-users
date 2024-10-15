@@ -36,6 +36,10 @@ export const calculatePopularLanguages = (repositories: Repository[]) => {
 export const calculateMostForkedRepos = (
   repositories: Repository[]
 ): { repo: string; count: number }[] => {
+  if (repositories.length === 0) {
+    return [];
+  }
+
   const forkedRepos = repositories
     .map((repo) => ({
       repo: repo.name,

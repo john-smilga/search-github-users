@@ -12,7 +12,7 @@ function StatsCard({ title, count }: StatsCardProps) {
     const animateCount = (currentTime: number) => {
       const elapsedTime = currentTime - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
-      const currentCount = Math.floor(progress * count);
+      const currentCount = Math.max(Math.floor(progress * count), 0); // Ensure count is never negative
 
       setDisplayCount(currentCount);
 

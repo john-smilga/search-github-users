@@ -53,7 +53,7 @@ I did not use any state management solutions, as the app is structured to only r
 
 I created a corresponding type for each query to catch bugs at build time. This ensures that any discrepancies between the query structure and the expected data types are identified early, improving the reliability and maintainability of the code.
 
-#### Test
+#### Tests
 
 For testing, I used Vitest and React Testing Library
 

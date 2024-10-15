@@ -54,6 +54,10 @@ export const calculateMostForkedRepos = (
 export const calculateMostStarredRepos = (
   repositories: Repository[]
 ): { repo: string; stars: number }[] => {
+  if (repositories.length === 0) {
+    return [];
+  }
+
   const starredRepos = repositories
     .map((repo) => ({
       repo: repo.name,

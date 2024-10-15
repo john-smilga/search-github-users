@@ -20,6 +20,7 @@ const UserProfile = ({ login }: UserProfileProps) => {
   if (loading) return <UserLoading />;
   if (error) return <h2 className='text-xl'>{error.message}</h2>;
   if (!data) return <h2 className='text-xl'>User Not Found.</h2>;
+  console.log(data.user.repositories);
 
   const {
     avatarUrl,

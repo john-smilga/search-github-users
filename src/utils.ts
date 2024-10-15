@@ -1,9 +1,17 @@
 import { Repository } from './types';
 
 export const calculatePopularLanguages = (repositories: Repository[]) => {
+  if (repositories.length === 0) {
+    return [];
+  }
+
   const languageMap: { [key: string]: number } = {};
 
   repositories.forEach((repo) => {
+    if (repo.languages.edges.length === 0) {
+      return;
+    }
+
     repo.languages.edges.forEach((language) => {
       const { name } = language.node;
 
@@ -14,6 +22,10 @@ export const calculatePopularLanguages = (repositories: Repository[]) => {
       }
     });
   });
+
+  if (Object.keys(languageMap).length === 0) {
+    return [];
+  }
 
   return Object.entries(languageMap)
     .sort(([, a], [, b]) => b - a)

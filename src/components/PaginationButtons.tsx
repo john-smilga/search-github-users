@@ -6,13 +6,25 @@ const PaginationButtons = ({
   setCursor,
   setPrevCursor,
   fetchMore,
+  setIsForward,
 }: PaginationButtonsProps) => {
   const handleNextPage = () => {
     if (pageInfo.hasNextPage) {
       setPrevCursor(pageInfo.startCursor);
       setCursor(pageInfo.endCursor);
+      setIsForward(true);
       fetchMore({
-        variables: { after: pageInfo.endCursor },
+        variables: {
+          first: 25,
+          last: null,
+          after: pageInfo.endCursor,
+          before: null,
+        },
+        // Add updateQuery to properly merge results
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return prev;
+          return fetchMoreResult;
+        },
       });
     }
   };
@@ -20,8 +32,18 @@ const PaginationButtons = ({
   const handlePrevPage = () => {
     if (pageInfo.hasPreviousPage) {
       setCursor(pageInfo.startCursor);
+      setIsForward(false);
       fetchMore({
-        variables: { before: pageInfo.startCursor },
+        variables: {
+          first: null,
+          after: null,
+          last: 25,
+          before: pageInfo.startCursor,
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return prev;
+          return fetchMoreResult;
+        },
       });
     }
   };

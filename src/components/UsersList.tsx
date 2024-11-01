@@ -14,8 +14,22 @@ type UsersListProps = {
 const UsersList = ({ userName, setUserName }: UsersListProps) => {
   const [cursor, setCursor] = useState<string | null>(null);
   const [, setPrevCursor] = useState<string | null>(null);
+  const [isForward, setIsForward] = useState(true); // Add this state to track direction
+
   const { loading, error, data, fetchMore } = useQuery<UsersResult>(GET_USERS, {
-    variables: { after: cursor },
+    variables: isForward
+      ? {
+          first: 25,
+          after: cursor,
+          last: null,
+          before: null,
+        }
+      : {
+          first: null,
+          after: null,
+          last: 25,
+          before: cursor,
+        },
   });
 
   if (loading) return <ListLoading />;
@@ -46,6 +60,7 @@ const UsersList = ({ userName, setUserName }: UsersListProps) => {
         setCursor={setCursor}
         setPrevCursor={setPrevCursor}
         fetchMore={fetchMore}
+        setIsForward={setIsForward}
       />
     </div>
   );

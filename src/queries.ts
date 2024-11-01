@@ -39,11 +39,12 @@ export const GET_USER = gql`
 `;
 
 export const GET_USERS = gql`
-  query GetTopUsers($after: String, $before: String) {
+  query GetTopUsers($first: Int, $last: Int, $after: String, $before: String) {
     search(
       query: "type:user"
       type: USER
-      first: 25
+      first: $first
+      last: $last
       after: $after
       before: $before
     ) {

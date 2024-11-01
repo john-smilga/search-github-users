@@ -24,10 +24,20 @@ export type PaginationButtonsProps = {
     startCursor: string | null;
     endCursor: string | null;
   };
+  setIsForward: React.Dispatch<React.SetStateAction<boolean>>;
   setCursor: React.Dispatch<React.SetStateAction<string | null>>;
   setPrevCursor: React.Dispatch<React.SetStateAction<string | null>>;
   fetchMore: (options: {
-    variables: { after?: string | null; before?: string | null };
+    variables: {
+      first: number | null;
+      last: number | null;
+      after: string | null;
+      before: string | null;
+    };
+    updateQuery: (
+      prev: UsersResult, // Changed from any
+      { fetchMoreResult }: { fetchMoreResult: UsersResult } // Changed from any
+    ) => UsersResult; // Added return type
   }) => void;
 };
 

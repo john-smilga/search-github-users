@@ -1,6 +1,6 @@
 # Search Github Users
 
-![Screenshot](https://github.com/john-smilga/search-github-users/blob/main/demo.gifg)
+![Gif](https://github.com/john-smilga/search-github-users/blob/main/demo.gif)
 
 ## App Description
 

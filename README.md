@@ -1,6 +1,6 @@
 # Search Github Users
 
-![Screenshot](./screenshot.png)
+![Screenshot](./demo.gif)
 
 ## App Description
 

@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <main className='mx-auto max-w-6xl px-8 py-20'>
-      <h1 className='text-4xl font-bold'>Github User Search</h1>
+      <h1 className='text-4xl font-bold'>Hello World</h1>
       <SearchForm userName={userName} setUserName={setUserName} />
       <UsersList userName={userName} setUserName={setUserName} />
       <UserProfile login={userName} />
